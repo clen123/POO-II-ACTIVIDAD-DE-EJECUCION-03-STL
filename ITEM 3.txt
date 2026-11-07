@@ -89,3 +89,6 @@ int main()
                  << " | Beca: [" << estadoBeca << "]" << endl;
         }
     }
+return 0;
+}
+
