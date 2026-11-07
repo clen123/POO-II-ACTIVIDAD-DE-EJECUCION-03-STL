@@ -1,0 +1,21 @@
+include <array>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+array<string, 12> Paises = {"Argentina", "Bolivia", 
+    "Brasil", "Chile", "Colombia", 
+    "Ecuador", "Paraguay", "Peru", 
+    "Uruguay", "Venezuela"};
+
+ Paises.at(10) = "Guyana";   
+    Paises[11] = "Surinam";
+
+for (auto x : Paises)
+    {
+        cout << x << " ";
+    }
+Return 0;
+}
+
