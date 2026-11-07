@@ -1,0 +1,91 @@
+#include <array>
+#include <iostream>
+#include <string>
+#include<fstream>
+using namespace std;
+
+struct Estudiante {
+    string nombre;
+    int edad;
+    double promedio;
+};
+
+int main()
+{
+    array<Estudiante, 10> GrupoEs = {
+        Estudiante{"Marino", 2000, 3.4}, 
+        Estudiante{"Tony", 2005, 2.8}
+    };
+
+    
+    cout << "Escribe el nombre: ";
+    cin >> GrupoEs.at(2).nombre;
+    
+    cout << "Escribe el anio de nacimiento: ";
+    cin >> GrupoEs.at(2).edad;
+    
+    cout << "Escribe el promedio: ";
+    cin >> GrupoEs.at(2).promedio;
+
+    cout << "Escribe el nombre : ";
+    cin >> GrupoEs.at(3).nombre;
+    
+    cout << "Escribe el ano de nacimiento: ";
+    cin >> GrupoEs.at(3).edad;
+    
+    cout << "Escribe el promedio: ";
+    cin >> GrupoEs.at(3).promedio;
+
+    string nombres[] = {"Gaby", "Patty", "Diana"};
+    int nacimientos[] = {2002, 2004, 2006};
+    double gpas[] = {3.8, 3.0, 2.9};
+
+    GrupoEs.at(4).nombre = nombres[0];     
+    GrupoEs.at(4).edad = nacimientos[0];     
+    GrupoEs.at(4).promedio = gpas[0];         
+
+  
+    GrupoEs[5].nombre = nombres[1];          
+    GrupoEs[5].edad = nacimientos[1];        
+    GrupoEs[5].promedio = gpas[1];
+                
+    ifstream archivo("datos.txt"); 
+    
+    if (!archivo.is_open()) {
+        cout << "Error: No se pudo abrir el archivo datos.txt" << endl;
+    } else {
+        int indice = 6; 
+        
+        while (indice < 10 && archivo >> GrupoEs[indice].nombre >> GrupoEs[indice].edad >> GrupoEs[indice].promedio) {
+            indice++;
+        }
+        archivo.close(); 
+    }
+
+     
+    cout << "\n--- REPORTE FINAL DE ESTUDIANTES Y BECAS ---" << endl;
+    for (int i = 0; i < 10; i++)
+    {
+        if (!GrupoEs[i].nombre.empty())
+        {
+            
+            int edadActual = 2026 - GrupoEs[i].edad;
+            
+            
+            string estadoBeca;
+
+            if (GrupoEs[i].promedio >= 3.5) 
+            {
+                estadoBeca = "SI CALIFICA";
+            } 
+            else 
+            {
+                estadoBeca = "NO CALIFICA";
+            }
+
+            cout << "- " << GrupoEs[i].nombre 
+                 << " | Edad: " << edadActual << " anos"
+                 << " | Promedio (GPA): " << GrupoEs[i].promedio 
+                 << " | Beca: [" << estadoBeca << "]" << endl;
+        }
+    }
